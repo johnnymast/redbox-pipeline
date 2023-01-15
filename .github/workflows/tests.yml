@@ -1,3 +1,7 @@
+name: Tests
+
+on: ['push', 'pull_request']
+
 ci:
   runs-on: ${{ matrix.os }}
   strategy:
