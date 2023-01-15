@@ -12,7 +12,7 @@
 use Redbox\Pipeline\Conditions\EqualsOrLessThan;
 use Redbox\Pipeline\CondtionPipe;
 
-test("evaluates() will return true if input is equal to the given value", function () {
+test("run() will return true if input is equal to the given value", function () {
     $input = 5;
     $compareTo = 5;
 
@@ -20,13 +20,13 @@ test("evaluates() will return true if input is equal to the given value", functi
     $pipeline->addInput($input);
 
     $condition = new EqualsOrLessThan($compareTo);
-    $condition->setPipeline($pipeline);
+    $condition->setPipe($pipeline);
 
-    $result = $condition->evaluate();
+    $result = $condition->run();
     expect($result)->toBeTrue();
 });
 
-test("evaluates() will return true if input is less than to the given value", function () {
+test("run() will return true if input is less than to the given value", function () {
     $input = 30;
     $compareTo = 50;
 
@@ -34,13 +34,13 @@ test("evaluates() will return true if input is less than to the given value", fu
     $pipeline->addInput($input);
 
     $condition = new EqualsOrLessThan($compareTo);
-    $condition->setPipeline($pipeline);
+    $condition->setPipe($pipeline);
 
-    $result = $condition->evaluate();
+    $result = $condition->run();
     expect($result)->toBeTrue();
 });
 
-test("evaluates() will return false if input does not match the condition.", function () {
+test("run() will return false if input does not match the condition.", function () {
     $input = 50;
     $compareTo = 30;
 
@@ -48,8 +48,8 @@ test("evaluates() will return false if input does not match the condition.", fun
     $pipeline->addInput($input);
 
     $condition = new EqualsOrLessThan($compareTo);
-    $condition->setPipeline($pipeline);
+    $condition->setPipe($pipeline);
 
-    $result = $condition->evaluate();
+    $result = $condition->run();
     expect($result)->toBeFalse();
 });

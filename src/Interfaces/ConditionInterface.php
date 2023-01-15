@@ -32,16 +32,16 @@ interface ConditionInterface
     /**
      * Set the pipeline for this condition.
      *
-     * @param \Redbox\Pipeline\CondtionPipe $pipeline The pipeline.
+     * @param \Redbox\Pipeline\CondtionPipe $pipe The pipeline.
      *
      * @return void
      */
-    public function setPipeline(CondtionPipe $pipeline): void;
+    public function setPipe(CondtionPipe $pipe): void;
 
     /**
      * Check to see if a condition evaluates.
      *
      * @return bool
      */
-    public function evaluate(): bool;
+    public function run(): bool;
 }

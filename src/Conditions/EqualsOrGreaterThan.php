@@ -33,7 +33,7 @@ class EqualsOrGreaterThan implements ConditionInterface
     /**
      * @var \Redbox\Pipeline\CondtionPipe|null
      */
-    protected ?CondtionPipe $pipeline = null;
+    protected ?CondtionPipe $pipe = null;
 
     public function __construct(protected mixed $value)
     {
@@ -42,13 +42,13 @@ class EqualsOrGreaterThan implements ConditionInterface
     /**
      * Set the pipeline for this condition.
      *
-     * @param \Redbox\Pipeline\CondtionPipe $pipeline The pipeline.
+     * @param \Redbox\Pipeline\CondtionPipe $pipe The pipeline.
      *
      * @return void
      */
-    public function setPipeline(CondtionPipe $pipeline): void
+    public function setPipe(CondtionPipe $pipe): void
     {
-        $this->pipeline = $pipeline;
+        $this->pipe = $pipe;
     }
 
     /**
@@ -56,8 +56,8 @@ class EqualsOrGreaterThan implements ConditionInterface
      *
      * @return bool
      */
-    public function evaluate(): bool
+    public function run(): bool
     {
-        return ($this->pipeline?->getInput() >= $this->value);
+        return ($this->pipe?->getInput() >= $this->value);
     }
 }

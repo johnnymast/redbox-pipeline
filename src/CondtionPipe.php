@@ -28,7 +28,7 @@ use Redbox\Pipeline\Interfaces\PipeInterface;
  * @link     https://github.com/axiom-labs/rivescript-php
  * @since    0.1.0
  */
-class CondtionPipe implements PipeInterface
+class CondtionPipe extends Pipe implements PipeInterface
 {
     /**
      * Registered handlers.
@@ -46,13 +46,6 @@ class CondtionPipe implements PipeInterface
      * @var array<\Redbox\Pipeline\Interfaces\ConditionInterface>
      */
     protected array $conditions = [];
-
-    /**
-     * The input for this pipeline.
-     *
-     * @var mixed|null
-     */
-    protected mixed $input = null;
 
     /**
      * This is the callback for success.
@@ -83,32 +76,9 @@ class CondtionPipe implements PipeInterface
     }
 
     /**
-     * Add an input for this pipeline.
-     *
-     * @param mixed $input
-     *
-     * @return $this
-     */
-    public function addInput(mixed $input): PipeInterface
-    {
-        $this->input = $input;
-        return $this;
-    }
-
-    /**
-     * Return the input.
-     *
-     * @return mixed
-     */
-    public function getInput(): mixed
-    {
-        return $this->input;
-    }
-
-    /**
      * Add a single condtion.
      *
-     * @param \Redbox\Pipeline\Interfaces\ConditionInterface $condition
+     * @param \Redbox\Pipeline\Interfaces\ConditionInterface $condition The Condition to add.
      *
      * @return \Redbox\Pipeline\CondtionPipe
      */
@@ -147,9 +117,9 @@ class CondtionPipe implements PipeInterface
         $failed = false;
 
         foreach ($this->conditions as $condition) {
-            $condition->setPipeline($this);
+            $condition->setPipe($this);
 
-            if (!$condition->evaluate()) {
+            if (!$condition->run()) {
                 $failed = true;
                 break;
             }

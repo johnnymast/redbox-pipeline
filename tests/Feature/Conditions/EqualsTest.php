@@ -11,7 +11,7 @@
 use Redbox\Pipeline\Conditions\Equals;
 use Redbox\Pipeline\CondtionPipe;
 
-test("evaluates() will return true if input does match the given value", function () {
+test("run() will return true if input does match the given value", function () {
     $input = 10;
     $compareTo = 10;
 
@@ -19,13 +19,13 @@ test("evaluates() will return true if input does match the given value", functio
     $pipeline->addInput($input);
 
     $condition = new Equals($compareTo);
-    $condition->setPipeline($pipeline);
+    $condition->setPipe($pipeline);
 
-    $result = $condition->evaluate();
+    $result = $condition->run();
     expect($result)->toBeTrue();
 });
 
-test("evaluates() will return false if input does not match the given value.", function () {
+test("run() will return false if input does not match the given value.", function () {
     $input = 10;
     $compareTo = 20;
 
@@ -33,8 +33,8 @@ test("evaluates() will return false if input does not match the given value.", f
     $pipeline->addInput($input);
 
     $condition = new Equals($compareTo);
-    $condition->setPipeline($pipeline);
+    $condition->setPipe($pipeline);
 
-    $result = $condition->evaluate();
+    $result = $condition->run();
     expect($result)->toBeFalse();
 });

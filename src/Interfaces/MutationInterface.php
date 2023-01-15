@@ -10,13 +10,15 @@
 
 namespace Redbox\Pipeline\Interfaces;
 
+use Redbox\Pipeline\CondtionPipe;
+use Redbox\Pipeline\MutablePipe;
 use Redbox\Pipeline\Pipe;
 
 /**
- * interface PipelineInterface
+ * interface MutationInterface
  *
- * The PipelineInterface helps to force pipeplines to follow
- * a set to guided set of rules.
+ * The MutationInterface helps conditions to follow a set
+ * of rules for the MutablePipe.
  *
  * PHP version 8.0 and higher.
  *
@@ -27,24 +29,21 @@ use Redbox\Pipeline\Pipe;
  * @link     https://github.com/axiom-labs/rivescript-php
  * @since    0.1.0
  */
-interface PipeInterface
+interface MutationInterface
 {
+    /**
+     * Set the pipeline for this condition.
+     *
+     * @param \Redbox\Pipeline\MutablePipe $pipe The pipeline.
+     *
+     * @return void
+     */
+    public function setPipe(MutablePipe $pipe): void;
 
     /**
-     * Add an input for this pipeline.
+     * Check to see if a condition evaluates.
      *
-     * @param mixed $input
-     *
-     * @return $this
+     * @return bool
      */
-    public function addInput(mixed $input): Pipe;
-
-    /**
-     * Return the input.
-     *
-     * @return mixed
-     */
-    public function getInput(): mixed;
-
     public function run(): bool;
 }
